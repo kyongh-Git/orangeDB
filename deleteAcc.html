@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>OrangeLiving.net: Apartment and dorm for Rent </title>
+	<link rel="stylesheet" type="text/css" href="deleteAccStyle.css"/>
+		
+	</head>
+	<body>
+		<header class="menubar">
+			<a href="http://orangedatabase.ddns.net:8080/" target="_self" title="logo"><img width="300" height="100" src="orange_logo.png" style="border:2.5 solid red"/></a>
+		</header>
+		<div id="login-box">
+			<div class="left-box">
+				<h1> Delete Account </h1>
+					<form action="deleteAcc.php" name="renter" onsubmit="return validateForm()" method="post"> <!-- <form action="/action_page.php">  -->
+						<input type="text" name="CWID" maxlength="9" placeholder="CWID" />
+						<input type="password" name="password" placeholder="Password" />
+						<input type="submit" name="delete-button" value="Submit"/>	
+					</form>
+			</div>
+			
+		</div>
+		
+		<script> 
+			function validateForm() {
+				var CWID = document.forms["renter"]["CWID"].value;
+				if (CWID == "")
+				{
+					alert("CWID is required");
+					return false;
+				}
+				if (!(CWID[0] == 'A' || CWID[0] == 'a'))
+				{
+					alert("CWID must starts with A");
+					return false;
+				}
+				if (CWID.length != 9)
+				{
+					alert("CWID must be 9 letters");
+					return false;
+				}
+				
+				var password = document.forms["renter"]["password"].value;
+				var password2 = document.forms["renter"]["password2"].value;
+				if (password == "")
+				{
+					alert("Password is required");
+					return false;
+				}	
+			}
+		</script> 
+	</body>
+</html>
+
