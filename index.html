@@ -6,11 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="mainStyle.css"/>
 		
 	</head>
-	<body>
+	<body onload="loginCheck()">
 		<div class="mainWrapper">
 			<header class="menubar">
 				<div id="i1" class="item1">
-					<a href="http://orangedatabase.ddns.net:8080" target="_self" title="logo"><img width="300" height="100" src="orange_logo.png" style="border:2.5 solid red"/></a>
+					<a href="http://orangedatabase.ddns.net:8080" target="_self" title="logo"><img width="300" height="100" src="orange_logo.png"/></a>
 				</div>
 				<div id="i2" class="item2">
 					<div id="myNav" class="overlay">
@@ -26,9 +26,16 @@
 					<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 				</div>
 				<div id="i3" class="item3">
-					<span style="font-size:30px;cursor:pointer" onclick="openSignUpWin()">Sign Up</span>
-					<span style="font-size:30px;"> / </span>
-					<span style="font-size:30px;cursor:pointer" onclick="document.getElementById('id01').style.display='block'">Sign In</span>
+					<div id="id02" class="signupin">
+						<span style="font-size:30px;cursor:pointer" onclick="openSignUpWin()">Sign Up</span>
+						<span style="font-size:30px;"> / </span>
+						<span style="font-size:30px;cursor:pointer" onclick="document.getElementById('id01').style.display='block'">Sign In</span>
+					</div>
+					<div id="id03" class="signout">
+						<span style="font-size:15px;" class="afterLogin"> Welcome </span>
+						<p style="font-size:15px;" id="myID"></p>
+						<span style="font-size:30px;cursor:pointer" onclick="logout()">Sign out</span>
+					</div>
 					<div id="id01" class="modal">
 						<!-- <div class="img"> -->
 							<!-- <img src="img/quite_town.svg"> -->
@@ -58,7 +65,7 @@
 										<input type="password" class="input" name="password">
 								   </div>
 								</div>
-								<a href="#" style="text-align: right;">Forgot Password?</a>
+								<a href="" onclick="openForgotPassWin()" style="text-align: right;">Forgot Password?  </a>
 								<input type="submit" class="btn" value="Login">
 								<button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
 							</form>
@@ -81,9 +88,12 @@
 							<div class="quickSearchWrapper">
 								<div class="inputWrapper">
 									<input type="text" id="quickSearchLookup" class="SearchLookup" autocomplete="off" placeholder="Search by Location" size="60">
-									<a href="http://orangedatabase.ddns.net:8080/search.html" class="go" title="Search apartments for rent">
+									<!-- <a href="http://orangedatabase.ddns.net:8080/search.php?sr=d?page=1" class="go" title="Search apartments for rent"> -->
+										<!-- <span>Search</span> -->
+									<!-- </a> -->
+									<button type="button" class="go" title="Search apartments for rent" onclick="sendLoginInfo()">
 										<span>Search</span>
-									</a>
+									</button>
 								</div>
 								<!-- <p class="errorMessage">You must choose a place to search</p> -->
 							</div>
@@ -129,6 +139,14 @@
 			}
 		</script>
 		
+		<script type="text/javascript">
+			var fg;
+			function openForgotPassWin() {
+				fg = window.open("http://orangedatabase.ddns.net:8080/forgotPass.html", "", "width=800, height=800");
+				fg.blur();
+			}
+		</script>
+		
 		<!-- <script type="text/javascript"> -->
 			<!-- var signin; -->
 			<!-- function openSignInWin() { -->
@@ -136,6 +154,15 @@
 				<!-- signin.blur(); -->
 			<!-- } -->
 		<!-- </script> -->
+		
+		<script>
+			var modal = document.getElementById('id01');
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
 		
 		<script>
 			var modal = document.getElementById('id01');
@@ -160,6 +187,64 @@
 
 			function closeNav() {
 				document.getElementById("myNav").style.width = "0%";
+			}
+		</script>
+		
+		<script>
+			function loginCheck() {
+				var sPageURL = window.location.search.substring(1);
+				var sParameterName = sPageURL.split('=');
+				
+				<!-- alert(sParameterName[1]); -->
+				if (sParameterName[1].length > 0) 
+				{
+					document.getElementById("id02").style.display = "none";
+					document.getElementById("id03").style.display = "block";
+				}
+				
+			}
+		</script>
+		
+		<script>
+			function sendLoginInfo() {
+			<!-- http://orangedatabase.ddns.net:8080/search.php?sr=d?page=1 -->
+				var sPageURL = window.location.search.substring(1);
+				var sParameterName = sPageURL.split('=');
+				
+				<!-- alert(sParameterName[0]); -->
+				if(sParameterName[0] == "")
+				{
+					location.replace("http://orangedatabase.ddns.net:8080/search.php?sr=d?page=1");
+				}
+				else if (sParameterName[1].length > 0) 
+				{
+					location.replace("http://orangedatabase.ddns.net:8080/search.php?id=" + sParameterName[1] + "?sr=d?page=1");
+				}
+				<!-- else if(sParameterName[1].length == null) -->
+				<!-- { -->
+					<!-- location.replace("http://orangedatabase.ddns.net:8080/search.php?sr=d?page=1"); -->
+				<!-- } -->
+				
+			}
+		</script>
+		
+		<script>
+			function myID() {
+				var sPageURL = window.location.search.substring(1);
+				var sParameterName = sPageURL.split('=');
+				return sParameterName[1];
+			}
+		</script>
+		
+		<script>
+			document.getElementById("myID").innerHTML = myID();
+		</script>
+		
+		<script>
+			function logout() {
+				window.location.replace("http://orangedatabase.ddns.net:8080/");
+				<!-- document.getElementById("id03").style.display = "none"; -->
+				<!-- document.getElementById("id02").style.display = "block"; -->
 			}
 		</script>
 		

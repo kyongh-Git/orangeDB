@@ -27,7 +27,11 @@
 			if($count == 0)
 			{
 				$error = "CWID you typed doesn't exist";	
-				die($error);
+				echo '<script type="text/JavaScript"> alert("CWID you typed does not exist"); </script>';
+				echo "<a href='javascript:history.back(1);'>Go back to previous page</a>";
+				echo "<br>";
+				echo "<br>";
+				die($error);			
 			}
 			
 			$passCount = 0;
@@ -38,7 +42,7 @@
 			// }
 			while ($Passrow = mysqli_fetch_array($passMatch)) 
 			{
-				if($Passrow[password] != NULL)
+				if($Passrow[password] == $password)
 				{
 					$passCount = $passCount + 1;
 				}
@@ -47,6 +51,10 @@
 			if($passCount == 0)
 			{
 				$error = "Password you typed doesn't match";	
+				echo '<script type="text/JavaScript"> alert("Wrong password"); </script>';
+				echo "<a href='javascript:history.back(1);'>Go back to previous page</a>";
+				echo "<br>";
+				echo "<br>";
 				die($error);
 			}			
 			
@@ -54,6 +62,6 @@
 			mysqli_query($db_link, $query);
 			// echo 'Connection done';
 			mysqli_close($db_link);
-
-			
+			echo '<script type="text/JavaScript"> alert("Your account is successfully deleted!"); </script>';
+			echo "<script> window.close();</script>";	
 ?>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 	<title>OrangeLiving.net: Apartment and dorm for Rent </title>
-	<link rel="stylesheet" type="text/css" href="deleteAccStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="forgotPassStyle.css"/>
 		
 	</head>
 	<body>
@@ -11,11 +11,12 @@
 		</header>
 		<div id="login-box">
 			<div class="left-box">
-				<h1> Delete Account </h1>
-					<form action="deleteAcc.php" name="renter" onsubmit="return validateForm()" method="post"> <!-- <form action="/action_page.php">  -->
+				<h1> Change Password </h1>
+					<form action="forgotPass.php" name="renter" onsubmit="return validateForm()" method="post"> <!-- <form action="/action_page.php">  -->
 						<input type="text" name="CWID" maxlength="9" placeholder="CWID" />
 						<input type="password" name="password" placeholder="Password" />
-						<input type="submit" name="delete-button" value="Submit"/>	
+						<input type="password" name="password2" placeholder="Re-Enter the password" />
+						<input type="submit" name="chpass-button" value="Submit"/>	
 					</form>
 			</div>
 			
@@ -46,6 +47,11 @@
 					alert("Password is required");
 					return false;
 				}	
+				if (password2 == "" || password == null)
+				{
+					alert("Please re-enter the password");
+					return false;
+				}
 			}
 		</script> 
 	</body>

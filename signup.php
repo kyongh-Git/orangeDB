@@ -31,13 +31,32 @@
 				if($row[CWID] != NULL)
 				{
 					$error = "CWID you typed already exist";
-					
+					echo '<script type="text/JavaScript"> alert("CWID duplicate"); </script>';
+					echo "<a href='javascript:history.back(1);'>Go back to previous page</a>";
+					echo "<br>";
+					echo "<br>";
+					die($error);
 					die($error);
 				}
 			}
 
 			$query = "INSERT INTO renter (CWID, password, firstName, lastName, country, age, phoneNum) VALUES ('$CWID', '$password', '$firstName', '$lastName', '$country', $age, '$phone');";
 			mysqli_query($db_link, $query);
+			
+			if($status == "student")
+			{
+				$queryStd = "INSERT INTO student (CWID, major, level) VALUES ('$CWID', '$major', '$level');";
+				mysqli_query($db_link, $queryStd);
+			}
+			else if($status == "staff")
+			{
+				$queryStf = "INSERT INTO staff (CWID) VALUES ('$CWID');";
+				mysqli_query($db_link, $queryStf);
+			}
+			
+			
 			// echo 'Connection done';
 			mysqli_close($db_link);
+			echo '<script type="text/JavaScript"> alert("Your account is successfully created!"); </script>';
+			echo "<script> window.close();</script>";
 ?>

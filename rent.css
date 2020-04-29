@@ -1,0 +1,73 @@
+/* body { */
+  /* margin: 0; */
+  /* padding: 0; */
+  /* background: #efefef; */
+  /* font-size: 16px; */
+  /* color: #777; */
+  /* font-family: sans-serif; */
+  /* font-weight: 300; */
+/* } */
+
+.menubar {
+	display: grid;
+	/* background-color: darkorange; */
+	/* background-color: white; */
+	padding: 10px;
+	height: 60px;
+}
+
+.bodycontainer {
+	display: absolute;
+	height: 720px;
+	width: 100%;
+	border: 3px solid #ff0000;
+	z-index: 1;
+	/* padding: 10px; */
+}
+
+.contractor {
+	display: absolute;
+	width: 100%;
+	border: 3px solid #000000;
+	z-index: 1;
+	padding: 20px;
+}
+
+.houseone {
+	/* position: block; */
+	left: 0;
+	/* width: 300px; */
+	/* box-sizing: border-box; */
+	padding: 20px;
+	/* width: 50%; */
+	/* height: 400px; */
+	
+}
+
+.housetwo {
+	/* position: block; */
+	right: 0;
+	/* width: 300px; */
+	/* box-sizing: border-box; */
+	padding: 20px;
+	/* width: 50%; */
+	/* height: 400px; */
+	
+}
+
+input[type="button"]
+{
+	margin-bottom: 28px;
+	width: 120px;
+	height: 32px;
+	background: #4682B4;
+	border: none;
+	border-radius: 2px;
+	color: #fff;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	transition: 0.2s ease;
+	cursor: pointer;
+}
+
+
